@@ -1,22 +1,22 @@
 module Main where
 
-import Prelude (Unit(),bind,($))
-import Control.Monad.Eff (Eff())
-import Control.Monad.Eff.Console (log, CONSOLE())
+import Prelude
+import Control.Monad.Eff
+import Control.Monad.Eff.Console
 
-import Data.Maybe (Maybe(..))
+import Data.Maybe
 
-import Graphics.Canvas (getCanvasElementById, getContext2D, Canvas(), setCanvasWidth, setCanvasHeight)
-import Graphics.Canvas.Free (runGraphics, setFillStyle, rect, fill)
+import Graphics.Canvas
 
 main :: forall e. Eff (console :: CONSOLE, canvas :: Canvas | e) Unit
 main = do
-  canvas <- getCanvasElementById "d"
-  case canvas of
-    Nothing -> log "Oh no, canvas not found"
-    Just c -> do
-      context <- getContext2D c
-      runGraphics context $ do
-        setFillStyle "#000000"
-        rect { x: 100.0, y: 100.0, w: 400.0, h: 600.0 }
-        fill
+  Just canvas <- getCanvasElementById "d"
+  ctx <- getContext2D canvas
+  setFillStyle "#5555AA" ctx
+  fillPath ctx $ do
+    moveTo ctx 200.0 200.0
+    lineTo ctx 400.0 200.0
+    lineTo ctx 400.0 400.0
+    lineTo ctx 200.0 400.0
+    closePath ctx
+  return unit

@@ -2,11 +2,13 @@
 When at a concert Friday, I saw a computer animation with various 2d shapes
 falling down, changing size according to the rythm of the music.
 
-I want to try to replicate the former, but patience, I'm lacking the focus right now, so no functional (heh) code.
+I want to try to replicate the former, but patience, I'm still working on it.
 
 To use:
 
-	pulp server
+	mkdir dist
+	pulp build -O --to dist/Main.js
 
-and then go to http://localhost:1337 . Well, as soon as I have pushed some code that is :-)
+And then open index.html
+
 
